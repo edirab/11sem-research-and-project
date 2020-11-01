@@ -1,0 +1,5 @@
+*.bak
+*.cd~
+slprj/
+images/
+*.autosave
