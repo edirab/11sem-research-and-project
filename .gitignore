@@ -1,5 +1,6 @@
 *.bak
 *.cd~
+*.asv
 slprj/
 images/
 *.autosave
