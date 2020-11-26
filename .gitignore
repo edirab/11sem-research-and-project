@@ -5,3 +5,4 @@ slprj/
 images/
 *.autosave
 *.ipynb_checkpoints
+~$*
