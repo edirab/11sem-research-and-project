@@ -6,3 +6,4 @@ images/
 *.autosave
 *.ipynb_checkpoints
 ~$*
+~*
