@@ -48,8 +48,13 @@ T_v = (2*T_propulsion_x*(m+lambda11)*0.707)/...
 k2_m = ( T_propulsion_x*(m+lambda11) - (2*Cvx1 * V_linearization + Cvx2)* T_v^2) /...
     ( T_v^2 * K_propulsion_x );
 
+K_v = K_propulsion_x / ( K_propulsion_x*k2_m + 2*Cvx1 * V_linearization + Cvx2 );
+
+M = 1.03;
+k1_m = (M^2 + M* sqrt(M^2 - 1)) / ( 4 * T_v * K_v);
+
 % Коэффициенты, которые необходимо синтезировать
-k1_m = 600; %4066;
+%k1_m = 600; %4066;
 %k2_m = 500; %527.58;
 
 % Коэффициенты, которые необходимо синтезировать
