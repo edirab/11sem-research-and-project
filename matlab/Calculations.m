@@ -1,3 +1,7 @@
+
+% коэффициент перевода из радиан в градусы
+kc = 57.2958;
+
 % *************************************************
 % *** Переменные подводного аппарата
 % *************************************************
@@ -39,9 +43,10 @@ T_Vx = (m + lambda11)/(2*Cvx1 * V_linearization + Cvx2);
 
 % Получим передаточную функцию канала поворота по курсу
 K_omega_y = 1 / (2 * Cwy1 * w_linearization + Cwy2);
-T_omega_w = (Jyy + lambda55)/(2 * Cwy1 * w_linearization + Cwy2);
+T_omega_y = (Jyy + lambda55)/(2 * Cwy1 * w_linearization + Cwy2);
 
 
+% Для марша
 T_v = (2*T_propulsion_x*(m+lambda11)*0.707)/...
     ( (2*Cvx1 * V_linearization + Cvx2)*T_propulsion_x + m + lambda11);
 
@@ -53,17 +58,27 @@ K_v = K_propulsion_x / ( K_propulsion_x*k2_m + 2*Cvx1 * V_linearization + Cvx2 )
 M = 1.03;
 k1_m = (M^2 + M* sqrt(M^2 - 1)) / ( 4 * T_v * K_v);
 
+
+% Для курса
+T_omega = (2*T_propulsion_x*(Jyy+lambda55)*0.707)/...
+    ( (2*Cwy1 * w_linearization + Cwy2)*T_propulsion_w + Jyy + lambda55);
+
+
+k2_yaw = ( T_propulsion_x*(Jyy+lambda55) - (2*Cwy1 * w_linearization + Cwy2)* T_omega^2) /...
+    ( T_omega^2 * kc * K_propulsion_w );
+
+
+K_omega =  K_propulsion_w / ( K_propulsion_w* kc * k2_yaw + 2*Cwy1 * w_linearization + Cwy2 );
+
+k1_yaw = (M^2 + M* sqrt(M^2 - 1)) / ( 4 * T_omega * K_omega * kc);
+%k2_yaw = 10;
+
 % Коэффициенты, которые необходимо синтезировать
 %k1_m = 600; %4066;
 %k2_m = 500; %527.58;
-
-% Коэффициенты, которые необходимо синтезировать
-%k1_k = 1;
-k1_k = 0.3;
-k2_k = 0.16732;
+%k1_k = 0.3;
+%k2_k = 0.16732;
 
 
 
-% коэффициент перевода из радиан в градусы
-kc = 57.2958;
 
