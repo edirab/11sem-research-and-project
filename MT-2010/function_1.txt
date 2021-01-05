@@ -1,0 +1,22 @@
+function desired_course = fcn(z1, x1, z_current, x_current)
+
+delta_x = x1 - x_current;
+delta_z = z1 - z_current;
+
+%1
+if (delta_x >= 0) && (delta_z >= 0)
+    desired_course = 57.2958*atan(delta_z / delta_x);
+%2    
+elseif (delta_x >= 0) && (delta_z < 0)
+    desired_course = 360 - 57.2958*atan( abs(delta_z) / delta_x);
+%3    
+elseif (delta_x < 0) && (delta_z < 0)    
+    desired_course = 180 + 57.2958*atan(abs(delta_z) / abs(delta_x));
+%4    
+elseif (delta_x < 0) && (delta_z >= 0)    
+    desired_course = 180 - 57.2958*atan( delta_z / abs(delta_x));   
+    
+else 
+    desired_course = -1;
+   
+end
