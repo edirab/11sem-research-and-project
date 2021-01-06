@@ -1,0 +1,12 @@
+.vs/
+Debug/
+Release/
+
+*.caffemodel
+*.pbtxt
+classification_classes_ILSVRC2012.txt
+
+*.autosave
+*.ipynb_checkpoints
+~$*
+~*

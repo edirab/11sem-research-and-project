@@ -8,7 +8,7 @@ import os
 print(os.getcwd())
  
 # Load a model imported from Tensorflow
-tensorflowNet = cv2.dnn.readNetFromTensorflow('saved_model.pb', 'rb')
+tensorflowNet = cv2.dnn.readNetFromTensorflow('saved_model.pb', 'graph.pbtxt', 'rb')
  
 # Input image
 img = cv2.imread('../pyramid0639.jpg.jpeg')

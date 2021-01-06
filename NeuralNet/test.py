@@ -15,8 +15,16 @@ while True:
     dim = (width, height) 
 
     frame = cv.resize(frame, dim)
-
     cv.imshow("Frame", frame)
+    
+    
+    cv2.dnn.readNetFromTensorflow('./docking_model/saved_model.pb', './docking_model/graph.pbtxt')
+    rows, cols, channels = frame.shape
+ 
+    # Use the given image as input, which needs to be blob(s).
+    tensorflowNet.setInput(cv2.dnn.blobFromImage(frame, size=(300, 300), swapRB=True, crop=False))
+    networkOutput = tensorflowNet.forward()
+    
     cv.waitKey(10)
     
 cv.waitKey(0)

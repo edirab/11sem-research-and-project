@@ -1,0 +1,8 @@
+item {
+  id: 1
+  name: 'zdun'
+}
+item {
+    id: 2
+    name: 'docking_station'
+}
