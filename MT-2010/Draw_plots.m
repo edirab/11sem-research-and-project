@@ -5,6 +5,11 @@
 % https://www.mathworks.com/matlabcentral/answers/487061-how-to-change-the-size-of-a-plot-figure
 % 
 
+%Извлечём время симуляции
+total_time = Z_timeseries.Time(end) %chaze_z(end)
+total_time = int16(fix(total_time));
+display(total_time);
+
 % Траектория
 plot(chase_z, chase_x, 'LineWidth', 1.2)
 hold on
@@ -36,9 +41,11 @@ height=700;
 set(gcf,'position',[x0,y0,width,height])
 
 grid on
-title( ['Траектория обхода при V = ', num2str(Vfwd)] )
+title( ['Траектория обхода при V = ', num2str(Vfwd), ' за время ', num2str(total_time), ' c' ] )
 xlabel('Z, м') 
 ylabel('X, м') 
 legend({'Траектория','ДЗС', 'Окружность центра масс АНПА', 'Точки траектории'},'Location', 'northeast')%'southwest')
 
 hold off
+print('-dpng','-r600', [ num2str(Vfwd), '.png'])
+
