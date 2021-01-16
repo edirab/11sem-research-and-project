@@ -29,9 +29,9 @@ h = plot(xunit, yunit);
 
 % Точки траектории
 scatter_color = [0, 0.6, 0.3];
-scatter(z_final, x_final, 25, scatter_color, 'filled');
+scatter(Path.z, Path.x, 25, scatter_color, 'filled');
 
-%plot(z_final, x_final)
+plot(Path.z, Path.x)
 pbaspect([1 1 1])
 
 x0=1000;
