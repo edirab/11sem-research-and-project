@@ -11,7 +11,8 @@ total_time = int16(fix(total_time));
 display(total_time);
 
 % Траектория
-plot(chase_z, chase_x, 'LineWidth', 1.2)
+%plot(chase_z, chase_x, 'LineWidth', 1.2)
+plot(Z_timeseries.Data, X_timeseries.Data, 'LineWidth', 1.2)
 hold on
 
 % Станция
@@ -47,5 +48,5 @@ ylabel('X, м')
 legend({'Траектория','ДЗС', 'Окружность центра масс АНПА', 'Точки траектории'},'Location', 'northeast')%'southwest')
 
 hold off
-print('-dpng','-r600', [ num2str(Vfwd), '.png'])
+print('-dpng','-r600', [ num2str(Vfwd) num2str(Z_delay), '.png'])
 
